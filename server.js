@@ -1,13 +1,15 @@
+// Import required modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
+// Initialize Express app
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000; // Use the port provided by Vercel or default to 5000
 
 // MongoDB connection URI (replace <dbname> with your actual database name, e.g., "carConfigurator")
-const uri = "mongodb+srv://mohammadaarishkhan:Commander_0@cluster0.hnhdu.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://mohammadaarishkhan:Commander_0@cluster0.hnhdu.mongodb.net/carConfigurator?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object
 const client = new MongoClient(uri, {
@@ -34,7 +36,7 @@ async function connectToDatabase() {
 connectToDatabase();
 
 // Define the database and collection
-const db = client.db('carConfigurator'); // Replace 'carConfigurator' with your database name if different
+const db = client.db('carConfigurator'); // Database name
 const carModelsCollection = db.collection('carModels'); // Collection name
 
 // Root route
